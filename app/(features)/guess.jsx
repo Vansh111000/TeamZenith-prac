@@ -14,10 +14,12 @@ import {
 } from "react-native";
 import axios from "axios";
 import * as FileSystem from "expo-file-system";
-import * as Sharing from "expo-sharing";
+
 import { LinearGradient } from "expo-linear-gradient";
 import * as DocumentPicker from "expo-document-picker";
 import { Buffer } from 'buffer';
+import * as Print from 'expo-print';
+import * as Sharing from 'expo-sharing';
 
 // For DOCX creation
 import { Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell, BorderStyle, WidthType, AlignmentType, HeadingLevel, UnderlineType } from 'docx';
@@ -126,329 +128,53 @@ const HealthAssessmentScreen = () => {
     }
   };
 
-  const generateDocx = async () => {
-    setGenerating(true);
-    
+  const generatePdfReport = async (responses, result) => {
     try {
-      // Create document
-      const doc = new Document({
-        styles: {
-          paragraphStyles: [
-            {
-              id: "Normal",
-              run: {
-                font: "Calibri",
-                size: 24,
-                color: "000000",
-              },
-              paragraph: {
-                spacing: {
-                  after: 200,
-                },
-              },
-            },
-            {
-              id: "Heading1",
-              name: "Heading 1",
-              run: {
-                font: "Calibri",
-                size: 36,
-                bold: true,
-                color: "2E5A88"
-              },
-              paragraph: {
-                spacing: {
-                  before: 240,
-                  after: 240,
-                },
-              },
-            },
-            {
-              id: "Heading2",
-              name: "Heading 2",
-              run: {
-                font: "Calibri",
-                size: 30,
-                bold: true,
-                color: "2E5A88"
-              },
-              paragraph: {
-                spacing: {
-                  before: 240,
-                  after: 120,
-                },
-              },
-            },
-          ],
-        },
-        sections: [
-          {
-            properties: {},
-            children: [
-              // Title
-              new Paragraph({
-                text: "Health Assessment Report",
-                heading: HeadingLevel.HEADING_1,
-                alignment: AlignmentType.CENTER,
-              }),
-              
-              // Date
-              new Paragraph({
-                children: [
-                  new TextRun({
-                    text: `Date: ${new Date().toLocaleDateString()}`,
-                    size: 24,
-                    italics: true,
-                  }),
-                ],
-                spacing: { after: 400 },
-              }),
-              
-              // Questions and Responses Section
-              new Paragraph({
-                text: "Questions and Responses",
-                heading: HeadingLevel.HEADING_2,
-                spacing: { before: 400 },
-              }),
-              
-              // Question Response Table
-              new Table({
-                width: { size: 100, type: WidthType.PERCENTAGE },
-                borders: {
-                  top: { style: BorderStyle.SINGLE, size: 1, color: "E0E0E0" },
-                  bottom: { style: BorderStyle.SINGLE, size: 1, color: "E0E0E0" },
-                  left: { style: BorderStyle.SINGLE, size: 1, color: "E0E0E0" },
-                  right: { style: BorderStyle.SINGLE, size: 1, color: "E0E0E0" },
-                  insideHorizontal: { style: BorderStyle.SINGLE, size: 1, color: "E0E0E0" },
-                  insideVertical: { style: BorderStyle.SINGLE, size: 1, color: "E0E0E0" },
-                },
-                rows: [
-                  // Table headers
-                  new TableRow({
-                    tableHeader: true,
-                    children: [
-                      new TableCell({
-                        width: { size: 10, type: WidthType.PERCENTAGE },
-                        shading: {
-                          fill: "4A6FA5",
-                        },
-                        children: [new Paragraph({ 
-                          text: "#", 
-                          alignment: AlignmentType.CENTER,
-                          children: [
-                            new TextRun({
-                              text: "#",
-                              bold: true,
-                              color: "FFFFFF",
-                            }),
-                          ],
-                        })],
-                      }),
-                      new TableCell({
-                        width: { size: 70, type: WidthType.PERCENTAGE },
-                        shading: {
-                          fill: "4A6FA5",
-                        },
-                        children: [new Paragraph({ 
-                          alignment: AlignmentType.CENTER,
-                          children: [
-                            new TextRun({
-                              text: "Question",
-                              bold: true,
-                              color: "FFFFFF",
-                            }),
-                          ],
-                        })],
-                      }),
-                      new TableCell({
-                        width: { size: 20, type: WidthType.PERCENTAGE },
-                        shading: {
-                          fill: "4A6FA5",
-                        },
-                        children: [new Paragraph({ 
-                          alignment: AlignmentType.CENTER,
-                          children: [
-                            new TextRun({
-                              text: "Response",
-                              bold: true,
-                              color: "FFFFFF",
-                            }),
-                          ],
-                        })],
-                      }),
-                    ],
-                  }),
-                  // Data rows - dynamically add user responses
-                  ...responses.map((res, index) => {
-                    // Determine response color for styling
-                    let responseColor = "000000"; // Default black
-                    if (res.answer === "Mild") responseColor = "FF9800";  // Orange
-                    if (res.answer === "Severe") responseColor = "F44336"; // Red
-                    if (res.answer === "No") responseColor = "4CAF50"; // Green
-                    
-                    return new TableRow({
-                      children: [
-                        // Question number cell
-                        new TableCell({
-                          shading: {
-                            fill: index % 2 === 0 ? "F9F9F9" : "FFFFFF",
-                          },
-                          children: [new Paragraph({ 
-                            text: (index + 1).toString(),
-                            alignment: AlignmentType.CENTER, 
-                          })],
-                        }),
-                        // Question text cell
-                        new TableCell({
-                          shading: {
-                            fill: index % 2 === 0 ? "F9F9F9" : "FFFFFF",
-                          },
-                          children: [new Paragraph({ text: res.question })],
-                        }),
-                        // Response cell
-                        new TableCell({
-                          shading: {
-                            fill: index % 2 === 0 ? "F9F9F9" : "FFFFFF",
-                          },
-                          children: [new Paragraph({ 
-                            alignment: AlignmentType.CENTER,
-                            children: [
-                              new TextRun({
-                                text: res.answer,
-                                bold: true,
-                                color: responseColor,
-                              }),
-                            ],
-                          })],
-                        }),
-                      ],
-                    });
-                  }),
-                ],
-              }),
-              
-              // Assessment Results Section
-              new Paragraph({
-                text: "Assessment Results",
-                heading: HeadingLevel.HEADING_2,
-                spacing: { before: 400, after: 200 },
-              }),
-              
-              // Parse result to create formatted paragraphs
-              ...result.split('\n').map(line => {
-                // Check if this is a numbered item
-                const match = line.match(/^(\d+)\.\s+(.+?):\s+(.+)$/);
-                if (match) {
-                  const number = match[1];
-                  const condition = match[2];
-                  const description = match[3];
-                  
-                  return new Paragraph({
-                    children: [
-                      new TextRun({
-                        text: `${number}. `,
-                        bold: true,
-                        size: 28,
-                      }),
-                      new TextRun({
-                        text: `${condition}: `,
-                        bold: true,
-                        underline: {
-                          type: UnderlineType.SINGLE,
-                        },
-                        size: 28,
-                      }),
-                      new TextRun({
-                        text: description,
-                        size: 24,
-                      }),
-                    ],
-                    spacing: { after: 240 },
-                  });
-                } else if (line.trim()) {
-                  // If it's just a regular line and not empty
-                  return new Paragraph({
-                    text: line,
-                    spacing: { after: 240 },
-                  });
-                }
-              }).filter(para => para), // Filter out undefined items
-              
-              // Disclaimer
-              new Paragraph({
-                children: [
-                  new TextRun({
-                    text: "DISCLAIMER: ",
-                    bold: true,
-                    size: 24,
-                  }),
-                  new TextRun({
-                    text: "This assessment is for informational purposes only and does not replace professional medical advice. Please consult with a healthcare provider for proper diagnosis and treatment.",
-                    size: 24,
-                    italics: true,
-                  }),
-                ],
-                spacing: { before: 400 },
-              }),
-            ],
-          },
-        ],
-      });
-
-      // Generate the DOCX file as buffer
-      const buffer = await Packer.toBuffer(doc);
-      
-      // Convert buffer to base64
-      const base64 = Buffer.from(buffer).toString('base64');
-      
-      // Save as temp file
-      const fileUri = `${FileSystem.documentDirectory}HealthAssessment.docx`;
-      await FileSystem.writeAsStringAsync(fileUri, base64, { encoding: FileSystem.EncodingType.BASE64 });
-
-      // Share the file
+      const htmlContent = `
+        <html>
+          <body style="font-family: sans-serif; padding: 20px;">
+            <h1 style="text-align: center; color: #2E5A88;">Health Assessment Report</h1>
+            <p><strong>Date:</strong> ${new Date().toLocaleDateString()}</p>
+            
+            <h2>Questions and Responses</h2>
+            <ul>
+              ${responses.map((res, i) => `
+                <li>
+                  <strong>Q${i + 1}:</strong> ${res.question}<br />
+                  <strong>Response:</strong> ${res.answer}
+                </li>
+              `).join('')}
+            </ul>
+  
+            <h2>Assessment Results</h2>
+            <pre style="white-space: pre-wrap; background-color: #f4f4f4; padding: 10px;">${result}</pre>
+  
+            <p><strong>DISCLAIMER:</strong> This assessment is for informational purposes only and does not replace professional medical advice.</p>
+          </body>
+        </html>
+      `;
+  
+      const { uri } = await Print.printToFileAsync({ html: htmlContent });
+  
       if (await Sharing.isAvailableAsync()) {
-        await Sharing.shareAsync(fileUri, {
-          mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-          dialogTitle: 'Health Assessment Report',
+        await Sharing.shareAsync(uri, {
+          mimeType: 'application/pdf',
+          dialogTitle: 'Share Health Assessment Report',
         });
       } else {
-        Alert.alert("Error", "Sharing is not available on this device");
+        Alert.alert("Error", "Sharing not available on this device.");
       }
+  
     } catch (error) {
-      console.error("Error generating DOCX report:", error);
-      Alert.alert("Error", "Failed to generate DOCX report. Falling back to text file.");
-      
-      // Fallback to text file if DOCX creation fails
-      const disclaimer = "DISCLAIMER: This assessment is for informational purposes only and does not replace professional medical advice.";
-      let content = "HEALTH ASSESSMENT REPORT\n\n";
-      content += `Date: ${new Date().toLocaleDateString()}\n\n`;
-      content += "QUESTIONS AND RESPONSES:\n\n";
-      
-      responses.forEach((res, index) => {
-        content += `Question ${index + 1}: ${res.question}\n`;
-        content += `Response: ${res.answer}\n\n`;
-      });
-      
-      content += "ASSESSMENT RESULTS:\n\n";
-      content += `${result}\n\n`;
-      content += disclaimer;
-      
-      const textFileUri = FileSystem.documentDirectory + "HealthAssessment.txt";
-
-      try {
-        await FileSystem.writeAsStringAsync(textFileUri, content, { encoding: FileSystem.EncodingType.UTF8 });
-        
-        if (await Sharing.isAvailableAsync()) {
-          await Sharing.shareAsync(textFileUri);
-        }
-      } catch (fallbackError) {
-        console.error("Error with fallback text report:", fallbackError);
-        Alert.alert("Error", "Failed to generate report.");
-      }
-    } finally {
-      setGenerating(false);
+      console.error('PDF generation failed:', error);
+      Alert.alert("Error", "Failed to generate PDF report.");
     }
   };
+
+  const handleGenerateReport = () => {
+    generatePdfReport(responses, result);
+  };
+  
 
   const restartAssessment = () => {
     setQuestions([]);
@@ -549,14 +275,14 @@ const HealthAssessmentScreen = () => {
               
               <View style={styles.actionButtonsContainer}>
                 <TouchableOpacity
-                  onPress={generateDocx}
+                  onPress={handleGenerateReport}
                   style={styles.downloadButton}
                   disabled={generating}
                 >
                   {generating ? (
                     <ActivityIndicator size="small" color="#ffffff" />
                   ) : (
-                    <Text style={styles.downloadButtonText}>Download Report (DOCX)</Text>
+                    <Text style={styles.downloadButtonText}>Download Report </Text>
                   )}
                 </TouchableOpacity>
                 

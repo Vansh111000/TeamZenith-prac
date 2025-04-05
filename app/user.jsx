@@ -1,21 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { 
-  View, 
-  Text, 
-  StyleSheet, 
-  ScrollView, 
-  TextInput, 
-  TouchableOpacity, 
-  Platform,
-  Alert
-} from "react-native";
-import { addUserDetails, getUserDetails } from "../lib/firebasedata";
 import { useGlobalContext } from "@/context/globalprovider";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { LinearGradient } from "expo-linear-gradient";
-import { Ionicons, FontAwesome5, MaterialCommunityIcons } from "@expo/vector-icons";
+import { FontAwesome5, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { LinearGradient } from "expo-linear-gradient";
+import React, { useEffect, useState } from "react";
+import {
+  Alert,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View
+} from "react-native";
 import * as Animatable from "react-native-animatable";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { addUserDetails, getUserDetails } from "../lib/firebasedata";
 
 const UserProfile = () => {
   const { user, setUser } = useGlobalContext();
@@ -876,5 +875,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 8,
     marginRight: 10,
-  }
+  },
+  checkboxContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 10,
+  },
 })

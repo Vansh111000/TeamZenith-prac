@@ -149,7 +149,9 @@ const HomeScreen = () => {
         <View style={{ flex: 1, marginRight: 10 }}>
           <Text style={styles.assessmentCardTitle}>Guess Your Illness</Text>
           <Text style={[styles.assessmentCardSubtitle, { display: 'flex', marginRight: '0', paddingRight: 0 }]}>
-            Unveil Your Inner Mystery: The Disease You Never Knew You Had
+            {/* Unveil Your Inner Mystery: The Disease You Never Knew You Had{'\n'} */}
+            Model :2
+            choose based on the symptoms you know you are facing
           </Text>
         </View>
         <Ionicons name="arrow-forward-circle" size={40} color="white" />

@@ -23,7 +23,7 @@ export default function Featuresroot(){
         />
         <Stack.Screen 
             name='guessmodel'
-            options={{headerShown:true}}
+            options={{headerShown:true , headerTintColor:'blue', headerStyle:{backgroundColor:'blue'}}}
         />
     </Stack>
     </>
