@@ -1,6 +1,7 @@
 import { useGlobalContext } from "@/context/globalprovider";
 import { FontAwesome5, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import Slider from "@react-native-community/slider";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useEffect, useState } from "react";
 import {
@@ -533,7 +534,7 @@ const UserProfile = () => {
                 <Text style={styles.inputLabel}>Exercise Frequency (days per week)</Text>
                 <View style={styles.sliderContainer}>
                   <Text style={styles.sliderValue}>{profileData.exerciseFrequency}</Text>
-                  <View style={styles.slider}>
+                  {/* <View style={styles.slider}>
                     {[0, 1, 2, 3, 4, 5, 6, 7].map((value) => (
                       <TouchableOpacity
                         key={value}
@@ -544,7 +545,29 @@ const UserProfile = () => {
                         onPress={() => handleChange("exerciseFrequency", value)}
                       />
                     ))}
-                  </View>
+                  </View> */}
+
+                              <View style={styles.inputContainer}>
+                                <Text style={styles.inputLabel}>Exercise Frequency</Text>
+                                <Text style={styles.sliderValue}>
+                                  {profileData.exerciseFrequency === 0
+                                    ? "Never"
+                                    : profileData.exerciseFrequency === 7
+                                    ? "Daily"
+                                    : `${profileData.exerciseFrequency} days per week`}
+                                </Text>
+                                <Slider
+                                  style={styles.slider}
+                                  minimumValue={0}
+                                  maximumValue={7}
+                                  step={1}
+                                  value={profileData.exerciseFrequency}
+                                  onPress={() => handleChange("exerciseFrequency", value)}
+                                  minimumTrackTintColor="#4568DC"
+                                  maximumTrackTintColor="#D1D5DB"
+                                  thumbTintColor="#4568DC"
+                                />
+                              </View>
                   <View style={styles.sliderLabels}>
                     <Text style={styles.sliderLabelText}>0</Text>
                     <Text style={styles.sliderLabelText}>7</Text>
@@ -796,89 +819,103 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   editContainer: {
-    paddingTop: 5,
+    // Container for the entire edit section
+    padding: 16,
   },
-  editRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
+  
   inputContainer: {
-    marginBottom: 20,
+    // Container for each input group
+    marginBottom: 24,
   },
-  inputHalf: {
-    width: '48%',
-  },
+  
   inputLabel: {
-    fontSize: 14,
-    color: '#444',
-    marginBottom: 8,
+    // Style for input labels
+    fontSize: 16,
     fontWeight: '500',
+    marginBottom: 8,
   },
-  inputHelper: {
-    fontSize: 12,
-    color: '#888',
-    marginBottom: 5,
+  
+  sliderContainer: {
+    // Container for slider components
+    width: '100%',
   },
-  textInput: {
-    borderWidth: 1,
-    borderColor: '#ddd',
-    borderRadius: 10,
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-    fontSize: 15,
-    backgroundColor: '#fafafa',
+  
+  sliderValue: {
+    // Text showing the current slider value
+    fontSize: 16,
+    fontWeight: '600',
+    marginBottom: 8,
   },
-  textArea: {
-    height: 100,
-    textAlignVertical: 'top',
-  },
-  datePickerButton: {
+  
+  slider: {
+    // The slider track container
     flexDirection: 'row',
     justifyContent: 'space-between',
+    width: '100%',
+    height: 20,
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#ddd',
-    borderRadius: 10,
-    paddingHorizontal: 15,
-    paddingVertical: 12,
-    backgroundColor: '#fafafa',
+    marginVertical: 8,
   },
-  segmentedControl: {
+  
+  sliderPoint: {
+    // Individual points on the slider
+    width: 16,
+    height: 16,
+    borderRadius: 8,
+    backgroundColor: '#D1D5DB', // Light gray for inactive points
+  },
+  
+  sliderPointActive: {
+    // Active points on the slider
+    backgroundColor: '#4568DC', // Blue color for active points
+  },
+  
+  sliderLabels: {
+    // Container for min/max labels
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginTop: 5,
+    justifyContent: 'space-between',
+    width: '100%',
   },
-  segmentItem: {
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    marginRight: 10,
-    marginBottom: 10,
-    borderRadius: 20,
-    backgroundColor: '#f0f0f0',
+  
+  sliderLabelText: {
+    // Text style for slider labels
+    fontSize: 12,
+    color: '#6B7280', // Medium gray
   },
-  segmentActive: {
-    backgroundColor: '#4568DC',
-  },
-  segmentText: {
-    fontSize: 14,
-    color: '#555',
-  },
-  segmentTextActive: {
-    color: 'white',
-  },
+  
   chipContainer: {
+    // Container for diet preference chips
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginTop: 5,
+    gap: 8,
   },
-  chip: {
+  
+  dietChip: {
+    // Individual diet preference chip
     paddingHorizontal: 12,
     paddingVertical: 8,
-    marginRight: 10,
+    borderRadius: 16,
+    backgroundColor: '#F3F4F6', // Light gray background
+    borderWidth: 1,
+    borderColor: '#E5E7EB',
+    marginRight: 8,
+    marginBottom: 8,
   },
-  checkboxContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 10,
+  
+  chipActive: {
+    // Active chip style
+    backgroundColor: '#4568DC', // Blue background
+    borderColor: '#4568DC',
   },
+  
+  chipText: {
+    // Text inside chips
+    fontSize: 14,
+    color: '#4B5563',
+  },
+  
+  chipTextActive: {
+    // Text inside active chips
+    color: '#FFFFFF', // White text
+  }
 })
