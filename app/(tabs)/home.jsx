@@ -132,7 +132,17 @@ const HomeScreen = () => {
           <Text style={styles.assessmentCardTitle}>Guess Your Illness</Text>
           <Text style={[styles.assessmentCardSubtitle, { display: 'flex', marginRight: '0', paddingRight: 0 }]}>
             Unveil Your Inner Mystery: The Disease You Never Knew You Had
+            {"\n"}
+            If you are not sure about the symptoms you are facing, choose this model{"\n"}
+          
+            {/* Model :1
+            choose based on the symptoms you know you are facing */}
+            {/* Model :2
+            choose based on the symptoms you know you are facing */}
           </Text>
+          <Text style={{ color: "#FFA07A", fontSize: 10, fontWeight: "bold", margin: "20px" }}>
+  More updates coming your way soon!
+</Text>
         </View>
         <Ionicons name="arrow-forward-circle" size={40} color="white" />
       </View>
@@ -150,10 +160,14 @@ const HomeScreen = () => {
           <Text style={styles.assessmentCardTitle}>Guess Your Illness</Text>
           <Text style={[styles.assessmentCardSubtitle, { display: 'flex', marginRight: '0', paddingRight: 0 }]}>
             {/* Unveil Your Inner Mystery: The Disease You Never Knew You Had{'\n'} */}
-            Unique 22 Symptoms Model
+            Unique 22 Symptoms Model {'\n'}
+            If you are sure about the symptoms you are facing, choose this model
             {/* Model :2
             choose based on the symptoms you know you are facing */}
           </Text>
+          <Text style={{ color: "#FFA07A", fontSize: 10, fontWeight: "bold", margin: "20px" }}>
+  More updates coming your way soon!
+</Text>
         </View>
         <Ionicons name="arrow-forward-circle" size={40} color="white" />
       </View>
@@ -174,6 +188,9 @@ const HomeScreen = () => {
                 <Text style={styles.assessmentCardSubtitle}>
                 Transform your plate, transform your life: nourish your body, ignite your spirit!
                 </Text>
+                <Text style={{ color: "#FFA07A", fontSize: 10, fontWeight: "bold", margin: "20px" }}>
+  More updates coming your way soon!
+</Text>
               </View>
               <Ionicons name="arrow-forward-circle" size={40} color="white" />
             </View>
@@ -193,6 +210,9 @@ const HomeScreen = () => {
                 <Text style={[styles.assessmentCardSubtitle, { display: 'flex', marginRight: '0' , paddingRight: 0 }]}>
                 Master Your Mind, Embrace Deep Sleep
                 </Text>
+                <Text style={{ color: "#FFA07A", fontSize: 10, fontWeight: "bold", margin: "20px" }}>
+  More updates coming your way soon!
+</Text>
               </View>
               <Ionicons name="arrow-forward-circle" size={40} color="white" />
             </View>

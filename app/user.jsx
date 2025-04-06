@@ -616,7 +616,7 @@ const UserProfile = () => {
                 </View>
               </View>
 
-              <View style={styles.inputContainer}>
+              {/* <View style={styles.inputContainer}>
                 <Text style={styles.inputLabel}>Stress Level</Text>
                 <View style={styles.sliderContainer}>
                   <Text style={styles.sliderValue}>{getStressLabel(profileData.stressLevel)}</Text>
@@ -637,7 +637,7 @@ const UserProfile = () => {
                     <Text style={styles.sliderLabelText}>High</Text>
                   </View>
                 </View>
-              </View>
+              </View> */}
             </View>
           ) : (
             <View style={styles.infoContainer}>
@@ -653,10 +653,7 @@ const UserProfile = () => {
                 getDietaryLabel(profileData.dietaryPreference),
                 <MaterialCommunityIcons name="food-apple" size={20} color="#4568DC" />
               )}
-              {renderInfoItem("Stress Level", 
-                getStressLabel(profileData.stressLevel),
-                <MaterialCommunityIcons name="brain" size={20} color="#4568DC" />
-              )}
+              
             </View>
           )}
         </Animatable.View>

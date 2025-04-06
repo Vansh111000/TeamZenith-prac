@@ -495,7 +495,7 @@ const HealthProfileForm = () => {
               />
             </View>
 
-            <View style={styles.inputContainer}>
+            {/* <View style={styles.inputContainer}>
               <Text style={styles.inputLabel}>Stress Level</Text>
               <Text style={styles.sliderValue}>
                 {formData.stressLevel <= 2
@@ -521,7 +521,7 @@ const HealthProfileForm = () => {
                 maximumTrackTintColor="#D1D5DB"
                 thumbTintColor="#4568DC"
               />
-            </View>
+            </View> */}
           </View>
 
           {/* Terms and Conditions */}
