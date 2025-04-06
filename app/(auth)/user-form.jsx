@@ -78,7 +78,7 @@ const HealthProfileForm = () => {
     }else {
     
     setSubmitting(true);
-    console.log("Form submitted:", formData);
+    // console.log("Form submitted:", formData);
     try {
       await addUserDetails(userId, formData);
 

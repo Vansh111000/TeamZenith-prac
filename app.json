@@ -13,10 +13,10 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/applogo.png",
         "backgroundColor": "#ffffff"
       },
-      "package" : "com.vsk.zenith"
+      "package": "com.vsk.zenith"
     },
     "web": {
       "bundler": "metro",
@@ -37,6 +37,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "7e347a57-e195-4460-91c8-d0d9a95b6cb0"
+      }
     }
   }
 }

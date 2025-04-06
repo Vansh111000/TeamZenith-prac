@@ -32,7 +32,7 @@ const SignUp = () => {
         // setIsLogged(true);
   
         router.replace("/user-data");
-        console.log("user");
+        // console.log("user");
       } catch (error) {
         Alert.alert("Error", error.message);
       } finally {
@@ -44,9 +44,9 @@ const SignUp = () => {
     <SafeAreaView style={{ height : "100%", backgroundColor : "#92D293" }}>
       <ScrollView>
         <View style={{ width : "100%", justifyContent : "center", alignItems : "center", Height : "100%" , paddingHorizontal: 4,marginVertical : 35 }}>
-          <Text style={styles.logo}>ZENITH</Text>
+          <Text style={styles.logo}>No Mild Severe</Text>
 
-          <Text style={styles.logintozenithtext }>Sign up to Zenith</Text>
+          <Text style={styles.logintozenithtext }>Sign up to No Mild Severe</Text>
           
           <FormField
           title="Username"
@@ -95,7 +95,7 @@ const SignUp = () => {
 
 const styles = StyleSheet.create({
   logo: {
-    fontSize: 60,
+    fontSize: 40,
     fontWeight: 'bold',
     color: 'white',
     letterSpacing: 5,

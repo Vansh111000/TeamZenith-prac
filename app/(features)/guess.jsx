@@ -1,30 +1,25 @@
-import React, { useState, useEffect } from "react";
-import { 
-  View, 
-  Text, 
-  TouchableOpacity, 
-  ActivityIndicator, 
-  ScrollView, 
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import {
+  ActivityIndicator,
   Alert,
+  Dimensions,
   SafeAreaView,
+  ScrollView,
   StatusBar,
   StyleSheet,
-  Dimensions,
-  Image
+  Text,
+  TouchableOpacity,
+  View
 } from "react-native";
-import axios from "axios";
-import * as FileSystem from "expo-file-system";
 
 import { LinearGradient } from "expo-linear-gradient";
-import * as DocumentPicker from "expo-document-picker";
-import { Buffer } from 'buffer';
 import * as Print from 'expo-print';
 import * as Sharing from 'expo-sharing';
 
 // For DOCX creation
-import { Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell, BorderStyle, WidthType, AlignmentType, HeadingLevel, UnderlineType } from 'docx';
 
-const API_KEY = "AIzaSyCckJqoHEUlJmOUDstkiTPG0p-0Xru9Xyo";
+const API_KEY = "AIzaSyCIhLsGzLC2KhzMOGmAvZqt4pj5FXSilY0";
 const MAX_QUESTIONS = 20;
 const { width } = Dimensions.get("window");
 
@@ -81,7 +76,7 @@ const HealthAssessmentScreen = () => {
         to identify potential health issues. For each question, I will respond with either "No", "Mild", or "Severe".
         
         Please ask one question at a time. After I answer, ask the next relevant question based on my previous answers.
-        After no more than 20 questions or when you have enough information, provide three potential health conditions
+        After no more than 20 questions, provide three potential health conditions
         that match my symptoms in order of likelihood.
         
         In your responses, ONLY include the question text by itself so it can be displayed to the user. 

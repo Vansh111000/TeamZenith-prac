@@ -55,9 +55,9 @@ const SignIn = () => {
             marginVertical: 39,
           }}
         >
-          <Text style={styles.logo}>ZENITH</Text>
+          <Text style={styles.logo}>No Mild Severe</Text>
 
-          <Text style={styles.logintozenithtext}>Login to Zenith</Text>
+          <Text style={styles.logintozenithtext}>Login to No Mild Severe</Text>
 
           <FormField
             title="Email"
@@ -112,7 +112,7 @@ const SignIn = () => {
 
 const styles = StyleSheet.create({
   logo: {
-    fontSize: 60,
+    fontSize: 40,
     fontWeight: "bold",
     color: "white",
     letterSpacing: 5,
