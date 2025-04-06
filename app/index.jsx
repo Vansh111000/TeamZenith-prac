@@ -62,7 +62,7 @@ const App = () => {
     <View style={styles.container}>
           <Animated.View style={[styles.contentContainer, { opacity: fadeAnim }]}>
             <View style={styles.logoContainer}>
-              <Text style={styles.logo}>ZENITH</Text>
+              <Text style={styles.logo}>No Mild Severe</Text>
             </View>
 
               <Image source={onboarding} style={{width: "260", height: "160",paddingVertical:"60" , resizeMode : "contain"}}/>

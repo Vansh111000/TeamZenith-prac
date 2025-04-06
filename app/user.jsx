@@ -185,6 +185,36 @@ const UserProfile = () => {
     );
   }
 
+  const ExerciseFrequencySlider = ({ profileData, handleChange }) => {
+  return (
+    <View style={styles.inputContainer}>
+      <Text style={styles.inputLabel}>Exercise Frequency</Text>
+      <Text style={styles.sliderValue}>
+        {profileData.exerciseFrequency === 0
+          ? "Never"
+          : profileData.exerciseFrequency === 7
+          ? "Daily"
+          : `${profileData.exerciseFrequency} days per week`}
+      </Text>
+      <Slider
+        style={styles.slider}
+        minimumValue={0}
+        maximumValue={7}
+        step={1}
+        value={profileData.exerciseFrequency}
+        onValueChange={(value) => handleChange("exerciseFrequency", value)}
+        minimumTrackTintColor="#4568DC"
+        maximumTrackTintColor="#D1D5DB"
+        thumbTintColor="#4568DC"
+      />
+      <View style={styles.sliderLabels}>
+        <Text style={styles.sliderLabelText}>Never</Text>
+        <Text style={styles.sliderLabelText}>Daily</Text>
+      </View>
+    </View>
+  );
+};
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -308,7 +338,7 @@ const UserProfile = () => {
                 )}
               </View>
 
-              <View style={styles.inputContainer}>
+              {/* <View style={styles.inputContainer}>
                 <Text style={styles.inputLabel}>Gender</Text>
                 <View style={styles.segmentedControl}>
                   {['male', 'female', 'non-binary', 'not-specified'].map((gender) => (
@@ -331,7 +361,7 @@ const UserProfile = () => {
                     </TouchableOpacity>
                   ))}
                 </View>
-              </View>
+              </View> */}
 
               <View style={styles.editRow}>
                 <View style={styles.inputHalf}>
@@ -356,7 +386,7 @@ const UserProfile = () => {
                 </View>
               </View>
 
-              <View style={styles.inputContainer}>
+              {/* <View style={styles.inputContainer}>
                 <Text style={styles.inputLabel}>Blood Group</Text>
                 <View style={styles.chipContainer}>
                   {['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'].map((blood) => (
@@ -379,7 +409,7 @@ const UserProfile = () => {
                     </TouchableOpacity>
                   ))}
                 </View>
-              </View>
+              </View> */}
 
               <View style={styles.inputContainer}>
                 <Text style={styles.inputLabel}>Emergency Contact</Text>
@@ -464,7 +494,7 @@ const UserProfile = () => {
                 />
               </View>
 
-              <View style={styles.inputContainer}>
+              {/* <View style={styles.inputContainer}>
                 <Text style={styles.inputLabel}>Medical Conditions</Text>
                 <Text style={styles.inputHelper}>Select all that apply</Text>
                 
@@ -482,7 +512,7 @@ const UserProfile = () => {
                     <Text style={styles.checkboxLabel}>{condition}</Text>
                   </TouchableOpacity>
                 ))}
-              </View>
+              </View> */}
             </View>
           ) : (
             <View style={styles.infoContainer}>
@@ -527,53 +557,10 @@ const UserProfile = () => {
             <MaterialCommunityIcons name="heart-pulse" size={20} color="#4568DC" />
             <Text style={styles.sectionTitle}>Lifestyle Information</Text>
           </View>
-
+         
           {isEditing ? (
             <View style={styles.editContainer}>
-              <View style={styles.inputContainer}>
-                <Text style={styles.inputLabel}>Exercise Frequency (days per week)</Text>
-                <View style={styles.sliderContainer}>
-                  <Text style={styles.sliderValue}>{profileData.exerciseFrequency}</Text>
-                  {/* <View style={styles.slider}>
-                    {[0, 1, 2, 3, 4, 5, 6, 7].map((value) => (
-                      <TouchableOpacity
-                        key={value}
-                        style={[
-                          styles.sliderPoint,
-                          parseInt(profileData.exerciseFrequency) >= value && styles.sliderPointActive
-                        ]}
-                        onPress={() => handleChange("exerciseFrequency", value)}
-                      />
-                    ))}
-                  </View> */}
-
-                              <View style={styles.inputContainer}>
-                                <Text style={styles.inputLabel}>Exercise Frequency</Text>
-                                <Text style={styles.sliderValue}>
-                                  {profileData.exerciseFrequency === 0
-                                    ? "Never"
-                                    : profileData.exerciseFrequency === 7
-                                    ? "Daily"
-                                    : `${profileData.exerciseFrequency} days per week`}
-                                </Text>
-                                <Slider
-                                  style={styles.slider}
-                                  minimumValue={0}
-                                  maximumValue={7}
-                                  step={1}
-                                  value={profileData.exerciseFrequency}
-                                  onPress={() => handleChange("exerciseFrequency", value)}
-                                  minimumTrackTintColor="#4568DC"
-                                  maximumTrackTintColor="#D1D5DB"
-                                  thumbTintColor="#4568DC"
-                                />
-                              </View>
-                  <View style={styles.sliderLabels}>
-                    <Text style={styles.sliderLabelText}>0</Text>
-                    <Text style={styles.sliderLabelText}>7</Text>
-                  </View>
-                </View>
-              </View>
+              
 
               <View style={styles.inputContainer}>
                 <Text style={styles.inputLabel}>Average Sleep (hours)</Text>

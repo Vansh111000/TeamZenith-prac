@@ -106,12 +106,12 @@ const HomeScreen = () => {
         style={styles.header}
       >
         <View style={styles.headerContent}>
-          <Text style={styles.appName}>Zenith Healthcare</Text>
+          <Text style={styles.appName}>No Mild Severe Healthcare</Text>
         </View>
         
         <View style={styles.welcomeContainer}>
           <Text style={styles.welcomeText}>
-            Welcome to Zenith Health Care app, we will help you find the health problems or disease you are currently facing
+            Welcome to No Mild Severe Health Care app, we will help you find the health problems or disease you are currently facing
           </Text>
         </View>
       </LinearGradient>
@@ -150,8 +150,9 @@ const HomeScreen = () => {
           <Text style={styles.assessmentCardTitle}>Guess Your Illness</Text>
           <Text style={[styles.assessmentCardSubtitle, { display: 'flex', marginRight: '0', paddingRight: 0 }]}>
             {/* Unveil Your Inner Mystery: The Disease You Never Knew You Had{'\n'} */}
-            Model :2
-            choose based on the symptoms you know you are facing
+            Unique 22 Symptoms Model
+            {/* Model :2
+            choose based on the symptoms you know you are facing */}
           </Text>
         </View>
         <Ionicons name="arrow-forward-circle" size={40} color="white" />
