@@ -1,50 +1,59 @@
-# Welcome to your Expo app 👋
+# 🩺 TeamZenith HealthCare App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+The **TeamZenith HealthCare App** is a cross-platform mobile health assistant that guides users through symptom-based questionnaires, predicts potential diseases using AI, and generates medical reports. It’s built with **React Native (Expo)** and powered by a **Flask backend**.
 
-## Get started
+---
 
-1. Install dependencies
+## 🧠 Key Features
 
-   ```bash
-   npm install
-   ```
+- ✅ Symptom-based interactive diagnosis  
+- 📄 Auto-generated downloadable health reports (DOCX)  
+- 🔒 Firebase Firestore for storing user data securely  
+- 📱 Clean and responsive user interface  
+- ⚙️ Smart backend logic for dynamic question generation  
 
-2. Start the app
+---
 
-   ```bash
-    npx expo start
-   ```
+## 📲 Screenshots
 
-In the output, you'll find options to open the app in a
+| Home Screen | Questionnaire | Prediction Result |
+|-------------|----------------|--------------------|
+| ![Home](./assets/screenshot-home.png) | ![Questions](./assets/screenshot-questions.png) | ![Prediction](./assets/screenshot-result.png) |
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+> 📷 *Add your screenshots to the `/assets` folder and rename them accordingly.*
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+## 👤 User Instructions
 
-When you're ready, run:
+Here’s how a user interacts with the app:
 
-```bash
-npm run reset-project
-```
+1. **Open the App**  
+   Launch the app using Expo Go or an emulator.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+2. **Provide Initial Information**  
+   Enter basic health metrics (height, weight, etc.) and initial symptoms.
 
-## Learn more
+3. **Answer Follow-Up Questions**  
+   The app will ask dynamic follow-up questions based on the symptoms you selected.
 
-To learn more about developing your project with Expo, look at the following resources:
+4. **Receive Prediction**  
+   After answering all questions, the app will send your responses to a Flask backend to predict a possible disease.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+5. **Download Report**  
+   You’ll get a downloadable `.docx` file containing the prediction summary and recommendations.
 
-## Join the community
+---
 
-Join our community of developers creating universal apps.
+## 🔧 Tech Stack
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- **Frontend:** React Native (Expo), TypeScript  
+- **Backend:** Flask (Python)  
+- **Database:** Firebase Firestore  
+- **AI/ML Model:** Custom-trained disease predictor  
+- **Report Gen:** Python-docx & PDF 
+
+---
+
+## 📁 Project Structure
+
