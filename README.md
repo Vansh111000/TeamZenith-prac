@@ -48,13 +48,31 @@ Here’s how a user interacts with the app:
 
 ## 🔧 Tech Stack
 
-- **Frontend:** React Native (Expo), TypeScript  
+- **Frontend:** React Native (Expo), JavaScript 
 - **Backend:** Flask (Python)  
-- **Database:** Firebase Firestore  
-- **AI/ML Model:** Custom-trained disease predictor  
+- **Database:** Firebase Firestore, Appwrite 
 - **Report Gen:** Python-docx & PDF 
 
 ---
 
 ## 📁 Project Structure
+
+```bash
+TeamZenith-prac/
+├── app/              # Main app screens and logic
+│   ├── screens/      # Individual screen components (e.g. Home, Result, etc.)
+│   ├── navigation/   # Navigation stack and config
+│   └── index.tsx     # Entry point for the app
+├── components/       # Reusable UI components (e.g. Button, Card, etc.)
+├── constants/        # App-wide constants, themes, and configs
+├── context/          # Context API providers for global state
+├── lib/              # Utility functions (e.g. API calls, helpers)
+├── assets/           # Static assets like images, fonts, etc.
+├── firebase/         # Firebase configuration and Firestore setup
+├── app.json          # Expo app configuration
+├── eas.json          # Expo Application Services config
+├── package.json      # Project metadata and dependencies
+├── tsconfig.json     # TypeScript configuration
+└── README.md         # Project documentation (this file)
+```
 
