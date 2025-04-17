@@ -19,6 +19,7 @@ The **TeamZenith HealthCare App** is a cross-platform mobile health assistant th
 | Home Screen | Questionnaire | Prediction Result | PDF or Docx Report |
 |-------------|----------------|--------------------|--------------------|
 | ![Home](./assets/images/screenshot-home.png) | ![Questions](./assets/images/screenshot-questions.png) | ![Prediction](./assets/images/screenshot-result.png) |![PDF](./assets/images/PDForDocx(1).png) |
+| ![Home](./assets/images/screenshot-home(2).png) | ![Questions](./assets/images/screenshot-questions(2).png) |  ![Prediction](./assets/images/screenshot-result(3).png) | ![PDF](./assets/images/PDForDocx(2).png) |
 
 > 📷 
 
