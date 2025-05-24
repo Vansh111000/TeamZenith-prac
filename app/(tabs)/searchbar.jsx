@@ -27,7 +27,7 @@ const DiseaseInfo = () => {
   
     setIsLoading(true);
     try {
-      const genAI = new GoogleGenerativeAI("AIzaSyCckJqoHEUlJmOUDstkiTPG0p-0Xru9Xyo");
+      const genAI = new GoogleGenerativeAI("fakedjdskjfhdsjfhdskjf");
       const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
   
       const prompt = `Provide a structured, easy-to-understand explanation of ${diseaseName}.
